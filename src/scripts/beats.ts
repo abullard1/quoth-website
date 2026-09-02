@@ -64,6 +64,7 @@ export function mountBeats(): void {
     .set(shape, { attr: KEY, transformOrigin: '50% 50%', scale: 1 })
     .set(ring, { attr: { r: 52, 'stroke-opacity': 0 } })
     .set(text, { opacity: 0 })
+    .set(wave, { opacity: 0, scale: 0.6, transformOrigin: '50% 50%' })
     .set(typed, { n: 0 })
     // press
     .to(shape, { scale: 0.92, duration: 0.18, ease: 'power2.in' }, 0.5)
@@ -73,7 +74,7 @@ export function mountBeats(): void {
     // speak: key becomes the pill, waveform fades in
     .call(() => setActive('speak'), [], 1.25)
     .to(shape, { attr: PILL, duration: 0.7 }, 1.25)
-    .to(wave, { opacity: 1, duration: 0.35, ease: 'power2.out' }, 2.0)
+    .to(wave, { opacity: 1, scale: 1, transformOrigin: '50% 50%', duration: 0.45, ease: 'power2.out' }, 1.45)
     .to({}, { duration: 2.1 })
     // done: waveform out, pill collapses to a caret, the caret writes
     .call(() => setActive('done'), [], 4.15)
