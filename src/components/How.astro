@@ -1,0 +1,41 @@
+---
+const steps = [
+  {
+    n: '01',
+    title: 'Press',
+    body: 'A global hotkey through evdev or keyd, or any compositor shortcut bound to quoth --toggle. Tap to toggle, or hold to talk.',
+  },
+  {
+    n: '02',
+    title: 'Speak',
+    body: 'Audio is captured through PipeWire and transcribed on-device by whisper.cpp, on your NPU or GPU when you have one, on the CPU everywhere else.',
+  },
+  {
+    n: '03',
+    title: 'Done',
+    body: 'The text is pasted straight into the focused window and your previous clipboard is restored. The transcript is never logged.',
+  },
+];
+---
+<section id="how" aria-labelledby="how-heading" class="mx-auto max-w-7xl px-6 py-section sm:px-8" data-reveal-group>
+  <div class="grid gap-12 lg:grid-cols-[1fr_2fr]">
+    <div>
+      <p class="eyebrow mb-4 reveal">How it works</p>
+      <h2 id="how-heading" class="text-display font-light leading-[1.02] tracking-[-0.025em] reveal">
+        Three beats.<br />No dialog boxes.
+      </h2>
+      <p class="mt-6 font-mono text-xs leading-loose text-ink-400 reveal">
+        hotkey ▸ PipeWire ▸ whisper.cpp ▸ paste
+      </p>
+    </div>
+    <ol class="grid gap-px overflow-hidden rounded-2xl border hairline bg-[color-mix(in_oklab,var(--color-bone)_8%,transparent)] sm:grid-cols-3">
+      {steps.map((s) => (
+        <li class="bg-ink-950 p-7 reveal sm:p-8">
+          <span class="font-mono text-xs text-ink-500">{s.n}</span>
+          <h3 class="mt-6 text-2xl font-medium tracking-tight">{s.title}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-bone-dim">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

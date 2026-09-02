@@ -1,0 +1,154 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/geist';
+
+@theme {
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+
+  --color-ink-950: #08080a;
+  --color-ink-900: #0e0e11;
+  --color-ink-800: #16161b;
+  --color-ink-700: #23232a;
+  --color-ink-600: #3a3a43;
+  --color-ink-500: #5c5c66;
+  --color-ink-400: #7d7d88;
+  --color-ink-300: #a3a3ad;
+  --color-bone: #f2f0ea;
+  --color-bone-dim: #cfccc3;
+  --color-accent: #c7dcff;
+
+  --text-hero: clamp(2.4rem, 1rem + 4.6vw, 5.6rem);
+  --text-display: clamp(2rem, 1rem + 3.4vw, 4.2rem);
+
+  --spacing-section: clamp(5rem, 3rem + 8vw, 11rem);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--color-ink-950);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    font-feature-settings: 'ss01', 'cv11';
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--color-bone);
+    color: var(--color-ink-950);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}
+
+@layer components {
+  /* Film grain over the whole page. Fixed so it never scrolls, blended so it
+     reads as texture on both smoke and flat ink. */
+  .grain::after {
+    content: '';
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    pointer-events: none;
+    z-index: 60;
+    opacity: 0.055;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 240px 240px;
+    animation: grain-shift 0.6s steps(3) infinite;
+  }
+  @keyframes grain-shift {
+    0% { transform: translate(0, 0); }
+    33% { transform: translate(-3%, 2%); }
+    66% { transform: translate(2%, -3%); }
+    100% { transform: translate(0, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .grain::after { animation: none; }
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-ink-400);
+  }
+
+  .hairline {
+    border-color: color-mix(in oklab, var(--color-bone) 10%, transparent);
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid color-mix(in oklab, var(--color-bone) 28%, transparent);
+    border-radius: 999px;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    backdrop-filter: blur(6px);
+    background: color-mix(in oklab, var(--color-ink-950) 30%, transparent);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-radius: 999px;
+    padding: 0.9rem 1.5rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    line-height: 1;
+    transition: transform 320ms var(--ease-out-expo), background-color 200ms, color 200ms, border-color 200ms;
+  }
+  .btn:active { transform: translateY(1px) scale(0.985); }
+  .btn-primary {
+    background: var(--color-bone);
+    color: var(--color-ink-950);
+  }
+  .btn-primary:hover { background: #ffffff; transform: translateY(-1px); }
+  .btn-ghost {
+    border: 1px solid color-mix(in oklab, var(--color-bone) 22%, transparent);
+    color: var(--color-bone);
+  }
+  .btn-ghost:hover {
+    border-color: color-mix(in oklab, var(--color-bone) 50%, transparent);
+    background: color-mix(in oklab, var(--color-bone) 6%, transparent);
+    transform: translateY(-1px);
+  }
+  .btn[aria-disabled='true'] {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Reveal-on-scroll: hidden until GSAP flips it; without JS everything shows. */
+  .reveal { opacity: 1; }
+  html.js .reveal { opacity: 0; transform: translateY(18px); }
+  html.js.reduced-motion .reveal { opacity: 1; transform: none; }
+
+  .surface {
+    background: linear-gradient(180deg, color-mix(in oklab, var(--color-bone) 5%, transparent), color-mix(in oklab, var(--color-bone) 2%, transparent));
+    border: 1px solid color-mix(in oklab, var(--color-bone) 8%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in oklab, var(--color-bone) 6%, transparent);
+  }
+  .surface:hover {
+    border-color: color-mix(in oklab, var(--color-bone) 14%, transparent);
+  }
+}

@@ -1,0 +1,6 @@
+<svg style="color:#f2f0ea" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1254 1254" role="img" aria-labelledby="quoth-title quoth-desc">
+  <title id="quoth-title">Quoth</title>
+  <desc id="quoth-desc">Letter Q formed by a broken ring, with a bird inside whose tail sweeps through the gap to form the tail of the Q.</desc>
+  <path id="ring" d="M596 221c-183 18-322 154-344 337c-2 14-2 66 0 80c9 73 33 132 76 189c64 84 161 140 264 152c14 2 57 2 71 0c18-2 45-9 45-11c0-1-5-4-12-7c-29-15-43-26-70-56c-29-33-48-47-84-62c-56-22-98-55-128-101c-42-63-54-141-34-212c39-140 184-221 322-179c157 48 229 229 148 374c-10 18-17 28-37 52l-2 3l7 9c16 21 49 50 72 64l8 5l4-4c23-21 53-67 69-101c73-163 22-358-123-462c-49-37-106-59-172-69c-14-1-67-2-80-1z"/>
+  <path id="bird" d="M567 542c-27 2-53 13-68 27c-5 4-5 5 1 5c44 6 75 41 84 96c2 14 4 34 4 49c0 111 79 205 199 237c27 8 50 11 90 12c83 3 110 8 157 28c5 2-6-14-17-24c-14-14-28-23-50-34c-57-27-77-38-106-59c-64-46-110-99-126-147c-4-11-8-29-13-53c-13-61-27-88-57-111c-26-19-66-30-98-26z"/>
+</svg>

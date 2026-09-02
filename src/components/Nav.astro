@@ -1,0 +1,27 @@
+---
+import logo from '../assets/brand/quoth-logo.svg?raw';
+import { Github } from 'lucide-astro';
+const links = [
+  { href: '#how', label: 'How it works' },
+  { href: '#why', label: 'Why Quoth' },
+  { href: '#machine', label: 'Hardware' },
+  { href: '#install', label: 'Install' },
+];
+---
+<header class="absolute inset-x-0 top-0 z-40">
+  <nav aria-label="Main navigation" class="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 sm:px-8">
+    <a href="/" class="flex items-center gap-3 text-bone" aria-label="Quoth home">
+      <span class="block h-8 w-8 [&_svg]:h-full [&_svg]:w-full [&_svg]:fill-current" set:html={logo} />
+      <span class="text-lg font-semibold tracking-tight">Quoth</span>
+    </a>
+    <ul class="hidden items-center gap-8 text-sm text-bone-dim md:flex">
+      {links.map((l) => (
+        <li><a href={l.href} class="transition-colors hover:text-bone">{l.label}</a></li>
+      ))}
+    </ul>
+    <a href="https://github.com/abullard1/quoth" class="btn btn-ghost !px-4 !py-2.5 text-sm" rel="noopener">
+      <Github size={16} stroke-width={1.75} />
+      <span class="hidden sm:inline">GitHub</span>
+    </a>
+  </nav>
+</header>

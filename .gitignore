@@ -1,0 +1,24 @@
+
+.astro/
+# build output
+.claude/settings.local.json
+# dependencies
+dist/
+.DS_Store
+.env
+.env*
+# environment variables
+.env.production
+# generated types
+.idea/
+.impeccable/config.local.json
+# jetbrains setting folder
+# logs
+# macOS-specific files
+node_modules
+node_modules/
+npm-debug.log*
+pnpm-debug.log*
+.vercel
+yarn-debug.log*
+yarn-error.log*

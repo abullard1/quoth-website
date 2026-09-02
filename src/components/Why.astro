@@ -1,0 +1,45 @@
+---
+import { WifiOff, Lock, Zap, Code2, ToggleLeft, Clipboard, Languages, Palette } from 'lucide-astro';
+const big = [
+  { icon: WifiOff, title: 'Offline', body: 'Transcription runs locally via whisper.cpp. It downloads a model once, then never needs the network again. Works on a train, on a plane, in a basement.' },
+  { icon: Lock, title: 'Private', body: 'Your voice and your text never leave the device. Dictated text is never written to logs, and the clipboard hand-off is tagged sensitive so history tools drop it.' },
+  { icon: Zap, title: 'Instant', body: 'Intel NPU via OpenVINO, any GPU via Vulkan, CPU always. A warm model stays ready between dictations so there is no spin-up.' },
+  { icon: Code2, title: 'Open', body: 'GPL-3.0, hackable, and built on standard Linux desktop tech: GTK4, libadwaita, PipeWire, evdev.' },
+];
+const small = [
+  { icon: ToggleLeft, title: 'Two modes', body: 'Tap-to-toggle or push-to-hold.' },
+  { icon: Clipboard, title: 'Types into any app', body: 'Clipboard paste with a virtual-keyboard fallback.' },
+  { icon: Languages, title: 'Translate to English', body: 'Speak many languages, get English text.' },
+  { icon: Palette, title: 'Riceable', body: 'Theme the pill via one hot-reloaded theme.toml. Nord, Catppuccin and Dracula ship in the box.' },
+];
+---
+<section id="why" aria-labelledby="why-heading" class="mx-auto max-w-7xl px-6 py-section sm:px-8">
+  <div class="mb-14 max-w-2xl" data-reveal-group>
+    <p class="eyebrow mb-4 reveal">Why Quoth</p>
+    <h2 id="why-heading" class="text-display font-light leading-[1.02] tracking-[-0.025em] reveal">
+      Dictation that behaves like a <em class="font-medium not-italic">local tool</em>, because it is one.
+    </h2>
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-2" data-reveal-group>
+    {big.map(({ icon: Icon, title, body }) => (
+      <article class="surface group rounded-2xl p-8 transition-colors reveal sm:p-10">
+        <Icon size={22} stroke-width={1.5} class="text-ink-300 transition-colors group-hover:text-bone" />
+        <h3 class="mt-8 text-3xl font-medium tracking-tight">{title}</h3>
+        <p class="mt-3 max-w-md leading-relaxed text-bone-dim">{body}</p>
+      </article>
+    ))}
+  </div>
+
+  <ul class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" data-reveal-group>
+    {small.map(({ icon: Icon, title, body }) => (
+      <li class="surface rounded-2xl p-6 reveal">
+        <div class="flex items-center gap-3">
+          <Icon size={18} stroke-width={1.5} class="text-ink-300" />
+          <h3 class="font-medium">{title}</h3>
+        </div>
+        <p class="mt-3 text-sm leading-relaxed text-bone-dim">{body}</p>
+      </li>
+    ))}
+  </ul>
+</section>

@@ -1,0 +1,38 @@
+---
+import { Github, Coffee } from 'lucide-astro';
+---
+<section id="install" aria-labelledby="install-heading" class="mx-auto max-w-7xl px-6 py-section sm:px-8">
+  <div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-start" data-reveal-group>
+    <div>
+      <p class="eyebrow mb-4 reveal">Install</p>
+      <h2 id="install-heading" class="text-display font-light leading-[1.02] tracking-[-0.025em] reveal">
+        Coming to Flathub.<br />Buildable today.
+      </h2>
+      <p class="mt-5 max-w-md text-bone-dim reveal">
+        Flathub will be the recommended path for most people. An AUR package is planned. Until then, build from source.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3 reveal">
+        <a class="btn btn-primary" aria-disabled="true" href="https://flathub.org/">Flathub, soon</a>
+        <a class="btn btn-ghost" href="https://github.com/abullard1/quoth" rel="noopener"><Github size={16} stroke-width={1.75} /> GitHub</a>
+        <a class="btn btn-ghost" href="https://buymeacoffee.com/samuelbullard" rel="noopener"><Coffee size={16} stroke-width={1.75} /> Buy me a coffee</a>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="surface overflow-hidden rounded-2xl">
+        <div class="flex items-center justify-between border-b hairline px-5 py-3">
+          <span class="eyebrow">Build from source</span>
+          <span class="font-mono text-xs text-ink-500">bash</span>
+        </div>
+        <pre class="overflow-x-auto p-5 font-mono text-[13px] leading-relaxed text-bone-dim"><code>git clone https://github.com/abullard1/quoth.git
+cd quoth
+uv sync                  <span class="text-ink-500"># Python dependencies</span>
+bash lib/build_helper.sh <span class="text-ink-500"># whisper.cpp C shim</span>
+uv run quoth</code></pre>
+      </div>
+      <p class="mt-4 text-sm leading-relaxed text-ink-400">
+        Needs GTK4, libadwaita, PyGObject, GStreamer with the PipeWire plugin, gtk4-layer-shell, wl-clipboard, wtype, a Vulkan loader and whisper.cpp from your distro. OpenVINO is optional for the Intel NPU path, keyd for the global hotkey.
+      </p>
+    </div>
+  </div>
+</section>

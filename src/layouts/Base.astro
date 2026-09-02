@@ -1,0 +1,46 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'Quoth: offline, private voice dictation for Linux',
+  description = 'Press a key, speak, and your words appear in the focused window. Transcription runs entirely on your machine with whisper.cpp, on your NPU or GPU when you have one. No cloud, no account.',
+} = Astro.props;
+const site = Astro.site ?? new URL('https://quoth.dev');
+const og = new URL('/brand/quoth-logo.png', site).href;
+---
+<!doctype html>
+<html lang="en" class="grain">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#08080a" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={site.href} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={og} />
+    <meta property="og:url" content={site.href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>
+      // Mark JS availability before paint so reveal styles apply without a flash.
+      document.documentElement.classList.add('js');
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('reduced-motion');
+      }
+    </script>
+  </head>
+  <body class="min-h-svh">
+    <slot />
+    <script>
+      import { initReveals } from '../scripts/reveal';
+      initReveals();
+    </script>
+  </body>
+</html>
