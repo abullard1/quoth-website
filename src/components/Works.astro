@@ -1,27 +1,60 @@
 ---
-const facts = [
-  { title: 'Your desktop', body: 'COSMIC, GNOME, KDE Plasma and Sway, with a small overlay that stays out of the way.' },
-  { title: 'Your hardware', body: 'Runs on any modern laptop. Faster still on an Intel NPU or a dedicated GPU.' },
-  { title: 'Your apps', body: 'Whatever has focus gets the text. No plugins, no per-app setup.' },
-];
 ---
 <section id="works" aria-labelledby="works-heading" class="border-y hairline bg-ink-900/60">
   <div class="mx-auto max-w-7xl px-6 py-section sm:px-8">
-    <div class="grid gap-12 lg:grid-cols-[1fr_2fr]" data-reveal-group>
+    <div class="grid items-center gap-12 lg:grid-cols-[1fr_1.3fr]" data-reveal-group>
       <div>
         <p class="eyebrow mb-4 reveal">Fits in</p>
         <h2 id="works-heading" class="text-display font-light leading-[1.02] tracking-[-0.025em] reveal">
           Made for the Linux desktop you already have.
         </h2>
       </div>
-      <dl class="grid gap-10 sm:grid-cols-3">
-        {facts.map((f) => (
-          <div class="reveal border-t hairline pt-5">
-            <dt class="font-medium">{f.title}</dt>
-            <dd class="mt-2 text-sm leading-relaxed text-bone-dim">{f.body}</dd>
-          </div>
-        ))}
-      </dl>
+      <!-- Four sketched desktops (top bar, bottom panel, tiling, panel + dock)
+           converge into one, and the Quoth pill opens on it. -->
+      <svg id="desktops" viewBox="0 0 640 400" class="reveal block w-full" fill="none" aria-hidden="true">
+        <g id="dk-a" class="dk" transform="translate(60 40) scale(0.42)">
+          <rect x="0" y="0" width="640" height="400" rx="18" stroke="var(--color-bone)" stroke-opacity="0.5" />
+          <rect x="0" y="0" width="640" height="26" rx="18" fill="var(--color-bone)" fill-opacity="0.16" />
+          <rect x="290" y="9" width="60" height="8" rx="4" fill="var(--color-bone)" fill-opacity="0.4" />
+        </g>
+        <g id="dk-b" class="dk" transform="translate(360 30) scale(0.42)">
+          <rect x="0" y="0" width="640" height="400" rx="18" stroke="var(--color-bone)" stroke-opacity="0.5" />
+          <rect x="0" y="366" width="640" height="34" rx="18" fill="var(--color-bone)" fill-opacity="0.16" />
+          <rect x="18" y="376" width="14" height="14" rx="3" fill="var(--color-bone)" fill-opacity="0.4" />
+          <rect x="40" y="376" width="14" height="14" rx="3" fill="var(--color-bone)" fill-opacity="0.4" />
+          <rect x="62" y="376" width="14" height="14" rx="3" fill="var(--color-bone)" fill-opacity="0.4" />
+        </g>
+        <g id="dk-c" class="dk" transform="translate(40 210) scale(0.42)">
+          <rect x="0" y="0" width="640" height="400" rx="18" stroke="var(--color-bone)" stroke-opacity="0.5" />
+          <rect x="16" y="16" width="300" height="368" rx="10" stroke="var(--color-bone)" stroke-opacity="0.35" />
+          <rect x="324" y="16" width="300" height="176" rx="10" stroke="var(--color-bone)" stroke-opacity="0.35" />
+          <rect x="324" y="208" width="300" height="176" rx="10" stroke="var(--color-bone)" stroke-opacity="0.35" />
+        </g>
+        <g id="dk-d" class="dk" transform="translate(340 200) scale(0.42)">
+          <rect x="0" y="0" width="640" height="400" rx="18" stroke="var(--color-bone)" stroke-opacity="0.5" />
+          <rect x="0" y="0" width="640" height="24" rx="18" fill="var(--color-bone)" fill-opacity="0.16" />
+          <rect x="220" y="352" width="200" height="32" rx="16" fill="var(--color-bone)" fill-opacity="0.16" />
+        </g>
+        <g id="dk-one" opacity="0">
+          <rect x="0" y="0" width="640" height="400" rx="18" stroke="var(--color-bone)" stroke-opacity="0.6" />
+          <rect x="0" y="0" width="640" height="26" rx="18" fill="var(--color-bone)" fill-opacity="0.14" />
+          <rect x="290" y="9" width="60" height="8" rx="4" fill="var(--color-bone)" fill-opacity="0.35" />
+          <rect x="60" y="80" width="520" height="16" rx="8" fill="var(--color-bone)" fill-opacity="0.12" />
+          <rect x="60" y="112" width="440" height="16" rx="8" fill="var(--color-bone)" fill-opacity="0.12" />
+          <rect x="60" y="144" width="480" height="16" rx="8" fill="var(--color-bone)" fill-opacity="0.12" />
+        </g>
+        <g id="dk-pill" opacity="0" transform="translate(320 330)">
+          <rect x="-90" y="-24" width="180" height="48" rx="24" fill="var(--color-bone)" />
+          {[10, 18, 26, 20, 30, 20, 26, 18, 10].map((h, i) => (
+            <rect class="dk-bar" x={(i - 4) * 14 - 2.5} y={-h / 2} width="5" height={h} rx="2.5" fill="var(--color-ink-950)" />
+          ))}
+        </g>
+      </svg>
     </div>
   </div>
 </section>
+
+<script>
+  import { mountDesktops } from '../scripts/desktops';
+  mountDesktops();
+</script>

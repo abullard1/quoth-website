@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base title="Privacy" description="Privacy policy for quoth.dev.">
+  <Nav />
+  <main class="mx-auto max-w-2xl px-6 pb-section pt-40 sm:px-8">
+    <p class="eyebrow mb-4">Privacy</p>
+    <h1 class="text-display font-light leading-[1.02] tracking-[-0.025em]">Datenschutz</h1>
+    <div class="mt-10 space-y-6 text-bone-dim">
+      <p>This website does not use cookies, analytics or tracking of any kind. No account can be created and no form collects personal data.</p>
+      <h2 class="pt-4 text-lg font-medium text-bone">Hosting</h2>
+      <p>The site is served by Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA. When you open a page, Vercel processes the technical data your browser sends (IP address, time of request, requested URL, user agent) to deliver the page and keep the service secure. Vercel's own privacy policy applies to that processing: <a class="text-bone underline decoration-ink-600 underline-offset-4 hover:decoration-bone" href="https://vercel.com/legal/privacy-policy" rel="noopener">vercel.com/legal/privacy-policy</a>.</p>
+      <h2 class="pt-4 text-lg font-medium text-bone">Fonts and assets</h2>
+      <p>Fonts and all other assets are served from this domain. No third-party font or script services are loaded.</p>
+      <h2 class="pt-4 text-lg font-medium text-bone">The Quoth app</h2>
+      <p>Quoth, the application, runs entirely on your device. It does not send audio, transcripts or telemetry anywhere. The only network access is the one-time download of a speech model you choose.</p>
+      <h2 class="pt-4 text-lg font-medium text-bone">Contact</h2>
+      <p>Controller under the GDPR: Samuel Ruairí Bullard, see the <a class="text-bone underline decoration-ink-600 underline-offset-4 hover:decoration-bone" href="/legal-notice">legal notice</a>. You have the right to access, rectification, erasure and restriction of processing, and to lodge a complaint with a supervisory authority.</p>
+    </div>
+  </main>
+  <Footer />
+</Base>

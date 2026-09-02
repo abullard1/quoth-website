@@ -5,7 +5,7 @@ import gsap from 'gsap';
  * key cap (press), pill with waveform (speak), caret writing a line (done).
  * The step list below highlights in sync.
  */
-const SENTENCE = 'Your words, exactly where you type them.';
+const SENTENCE = 'Your words, exactly where you want them.';
 
 const KEY = { x: 280, y: 70, width: 80, height: 80, rx: 20 };
 const PILL = { x: 210, y: 82, width: 220, height: 56, rx: 28 };
@@ -38,7 +38,7 @@ export function mountBeats(): void {
   // The waveform breathes on its own clock; it only shows during the speak beat.
   bars.forEach((bar, i) => {
     gsap.to(bar, {
-      attr: { height: () => rest[i] * gsap.utils.random(0.35, 1.6) },
+      attr: { height: () => rest[i] * gsap.utils.random(0.35, 1.4) },
       y: () => 0,
       duration: gsap.utils.random(0.22, 0.4),
       repeat: -1,
@@ -73,7 +73,7 @@ export function mountBeats(): void {
     // speak: key becomes the pill, waveform fades in
     .call(() => setActive('speak'), [], 1.25)
     .to(shape, { attr: PILL, duration: 0.7 }, 1.25)
-    .to(wave, { opacity: 1, duration: 0.35, ease: 'power2.out' }, 1.75)
+    .to(wave, { opacity: 1, duration: 0.35, ease: 'power2.out' }, 2.0)
     .to({}, { duration: 2.1 })
     // done: waveform out, pill collapses to a caret, the caret writes
     .call(() => setActive('done'), [], 4.15)

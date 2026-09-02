@@ -1,11 +1,13 @@
 ---
-import wordmark from '../assets/brand/quoth-wordmark-reveal.svg?raw';
+import wordmarkRaw from '../assets/brand/quoth-wordmark-reveal.svg?raw';
+// The SVG's own `svg { color }` rules would leak to every icon once inlined; colour comes from the wrapper instead.
+const wordmark = wordmarkRaw.replace(/svg \{ color: #[0-9a-fA-F]+; \}/g, '');
 import { Github } from 'lucide-astro';
 ---
 <section aria-labelledby="hero-heading" class="relative isolate flex min-h-svh flex-col justify-end overflow-hidden">
   <canvas id="smoke" class="absolute inset-0 -z-20 h-full w-full" aria-hidden="true"></canvas>
   <!-- Keeps copy legible when the smoke drifts bright behind it, whatever the aspect. -->
-  <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-ink-950/85 via-ink-950/25 to-transparent" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_top,var(--color-ink-950)_0%,color-mix(in_oklab,var(--color-ink-950)_70%,transparent)_18%,transparent_60%)]" aria-hidden="true"></div>
 
   <div class="mx-auto w-full max-w-7xl px-6 pb-10 pt-28 sm:px-8 sm:pb-12">
     <p class="mb-8 text-base text-bone-dim reveal">Local. Private. Yours.</p>
@@ -30,8 +32,12 @@ import { Github } from 'lucide-astro';
 
     <div class="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 border-t hairline pt-6 reveal">
       <span class="text-xs text-ink-500">Supported by</span>
-      <a href="/sponsors" class="group inline-flex items-center gap-3 text-sm text-ink-300 transition-colors hover:text-bone">
+      <a href="/sponsors" class="group inline-flex items-center gap-2 text-sm text-ink-300 transition-colors hover:text-bone">
         <span class="block h-7 w-20 rounded-md border border-dashed border-ink-600 transition-colors group-hover:border-ink-400" aria-hidden="true"></span>
+        <svg width="44" height="12" viewBox="0 0 44 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="text-ink-400 transition-colors group-hover:text-bone" aria-hidden="true">
+          <path d="M43 6H2" />
+          <path d="M7 1 2 6l5 5" />
+        </svg>
         Your logo could be here
       </a>
     </div>

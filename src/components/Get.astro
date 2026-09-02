@@ -1,19 +1,45 @@
 ---
+import flathub from '../assets/badges/flathub.svg?raw';
 import { Github, Coffee } from 'lucide-astro';
+const channels = [
+  { title: 'Arch', body: 'From the AUR, with the NPU path set up out of the box.', code: 'yay -S quoth' },
+  { title: 'Debian, Ubuntu, Pop!_OS', body: 'A .deb from the GitHub releases page.', code: 'apt install ./quoth.deb' },
+];
 ---
 <section id="get" aria-labelledby="get-heading" class="mx-auto max-w-7xl px-6 py-section sm:px-8">
-  <div class="mx-auto max-w-2xl text-center" data-reveal-group>
+  <div class="mx-auto max-w-3xl text-center" data-reveal-group>
     <p class="eyebrow mb-4 reveal">Get Quoth</p>
     <h2 id="get-heading" class="text-display font-light leading-[1.02] tracking-[-0.025em] reveal">
-      Coming to Flathub.
+      Your distro, your way.
     </h2>
     <p class="mx-auto mt-5 max-w-md text-bone-dim reveal">
-      One click install for every distro is on its way. Until then, Quoth lives on GitHub. Star it to hear the moment it ships.
+      Packages are built and going through review. Star the repository to hear the moment they land.
     </p>
-    <div class="mt-8 flex flex-wrap justify-center gap-3 reveal">
-      <a class="btn btn-primary" aria-disabled="true" href="https://flathub.org/">Flathub, soon</a>
-      <a class="btn btn-ghost" href="https://github.com/abullard1/quoth" rel="noopener"><Github size={16} stroke-width={1.75} /> GitHub</a>
-      <a class="btn btn-ghost" href="https://buymeacoffee.com/samuelbullard" rel="noopener"><Coffee size={16} stroke-width={1.75} /> Buy me a coffee</a>
+  </div>
+
+  <div class="mx-auto mt-14 grid max-w-4xl gap-4 sm:grid-cols-3" data-reveal-group>
+    <div class="surface flex flex-col items-center justify-between gap-6 rounded-2xl p-7 text-center reveal">
+      <a href="https://flathub.org/" aria-disabled="true" class="flathub pointer-events-none block w-44 opacity-50 grayscale [&_svg]:h-auto [&_svg]:w-full" set:html={flathub} />
+      <div>
+        <h3 class="font-medium">Every distro</h3>
+        <p class="mt-1 text-sm text-bone-dim">One click from Flathub.</p>
+      </div>
+      <span class="text-xs text-ink-500">Soon</span>
     </div>
+    {channels.map((c) => (
+      <div class="surface flex flex-col items-center justify-between gap-6 rounded-2xl p-7 text-center reveal">
+        <code class="rounded-full border hairline px-4 py-2 font-mono text-sm text-ink-300">{c.code}</code>
+        <div>
+          <h3 class="font-medium">{c.title}</h3>
+          <p class="mt-1 text-sm text-bone-dim">{c.body}</p>
+        </div>
+        <span class="text-xs text-ink-500">Soon</span>
+      </div>
+    ))}
+  </div>
+
+  <div class="mt-10 flex flex-wrap justify-center gap-3 reveal">
+    <a class="btn btn-primary" href="https://github.com/abullard1/quoth" rel="noopener"><Github size={16} stroke-width={1.75} /> GitHub</a>
+    <a class="btn btn-ghost" href="https://buymeacoffee.com/samuelbullard" rel="noopener"><Coffee size={16} stroke-width={1.75} /> Buy me a coffee</a>
   </div>
 </section>

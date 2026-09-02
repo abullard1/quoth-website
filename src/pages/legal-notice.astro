@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base title="Legal notice" description="Legal notice (Impressum) for quoth.dev.">
+  <Nav />
+  <main class="mx-auto max-w-2xl px-6 pb-section pt-40 sm:px-8">
+    <p class="eyebrow mb-4">Legal notice</p>
+    <h1 class="text-display font-light leading-[1.02] tracking-[-0.025em]">Impressum</h1>
+    <div class="prose-quoth mt-10 space-y-6 text-bone-dim">
+      <p>Information in accordance with Section 5 DDG (German Digital Services Act).</p>
+      <p>
+        Samuel Ruairí Bullard<br />
+        [Street and number]<br />
+        [Postcode] [City]<br />
+        Germany
+      </p>
+      <p>Email: [contact email]</p>
+      <p>Responsible for content under Section 18 (2) MStV: Samuel Ruairí Bullard, address as above.</p>
+      <p>Quoth is free software, published under the GNU GPL 3.0 or later. The source is available on <a class="text-bone underline decoration-ink-600 underline-offset-4 hover:decoration-bone" href="https://github.com/abullard1/quoth" rel="noopener">GitHub</a>.</p>
+    </div>
+  </main>
+  <Footer />
+</Base>
