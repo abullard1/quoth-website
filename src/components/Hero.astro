@@ -1,17 +1,14 @@
 ---
 import wordmark from '../assets/brand/quoth-wordmark-reveal.svg?raw';
-import { ArrowDown, Github } from 'lucide-astro';
+import { Github } from 'lucide-astro';
 ---
 <section aria-labelledby="hero-heading" class="relative isolate flex min-h-svh flex-col justify-end overflow-hidden">
   <canvas id="smoke" class="absolute inset-0 -z-20 h-full w-full" aria-hidden="true"></canvas>
   <!-- Keeps copy legible when the smoke drifts bright behind it, whatever the aspect. -->
   <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-ink-950/85 via-ink-950/25 to-transparent" aria-hidden="true"></div>
 
-  <div class="mx-auto w-full max-w-7xl px-6 pb-10 pt-28 sm:px-8 sm:pb-14">
-    <p class="pill mb-10 text-bone-dim reveal">
-      <span class="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_12px_2px_rgba(199,220,255,0.8)]"></span>
-      Local. Private. Yours.
-    </p>
+  <div class="mx-auto w-full max-w-7xl px-6 pb-10 pt-28 sm:px-8 sm:pb-12">
+    <p class="mb-8 text-base text-bone-dim reveal">Local. Private. Yours.</p>
 
     <div class="wordmark mb-8 w-[min(80vw,30rem)] text-bone [&_svg]:h-auto [&_svg]:w-full" set:html={wordmark} />
 
@@ -22,21 +19,22 @@ import { ArrowDown, Github } from 'lucide-astro';
       </h1>
       <div class="reveal">
         <p class="max-w-md text-lg leading-relaxed text-bone-dim">
-          Offline voice dictation for Linux. Press a key, speak, and your words appear in whatever window you're in. Nothing leaves your machine.
+          Voice dictation for Linux that runs entirely on your computer. Press a key, speak, and your words appear wherever you're typing.
         </p>
         <div class="mt-7 flex flex-wrap gap-3">
-          <a href="#install" class="btn btn-primary">Get Quoth <ArrowDown size={16} stroke-width={2} /></a>
+          <a href="#get" class="btn btn-primary">Get Quoth</a>
           <a href="https://github.com/abullard1/quoth" class="btn btn-ghost" rel="noopener"><Github size={16} stroke-width={1.75} /> Source</a>
         </div>
       </div>
     </div>
 
-    <ul class="mt-12 flex flex-wrap gap-x-8 gap-y-2 border-t hairline pt-6 text-xs tracking-wide text-ink-400 reveal" aria-label="Facts">
-      <li>whisper.cpp on-device</li>
-      <li>Intel NPU + any Vulkan GPU</li>
-      <li>GTK4 · Wayland</li>
-      <li>GPL-3.0</li>
-    </ul>
+    <div class="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 border-t hairline pt-6 reveal">
+      <span class="text-xs text-ink-500">Supported by</span>
+      <a href="/sponsors" class="group inline-flex items-center gap-3 text-sm text-ink-300 transition-colors hover:text-bone">
+        <span class="block h-7 w-20 rounded-md border border-dashed border-ink-600 transition-colors group-hover:border-ink-400" aria-hidden="true"></span>
+        Your logo could be here
+      </a>
+    </div>
   </div>
 </section>
 

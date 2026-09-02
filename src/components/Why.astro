@@ -1,16 +1,16 @@
 ---
 import { WifiOff, Lock, Zap, Code2, ToggleLeft, Clipboard, Languages, Palette } from 'lucide-astro';
 const big = [
-  { icon: WifiOff, title: 'Offline', body: 'Transcription runs locally via whisper.cpp. It downloads a model once, then never needs the network again. Works on a train, on a plane, in a basement.' },
-  { icon: Lock, title: 'Private', body: 'Your voice and your text never leave the device. Dictated text is never written to logs, and the clipboard hand-off is tagged sensitive so history tools drop it.' },
-  { icon: Zap, title: 'Instant', body: 'Intel NPU via OpenVINO, any GPU via Vulkan, CPU always. A warm model stays ready between dictations so there is no spin-up.' },
-  { icon: Code2, title: 'Open', body: 'GPL-3.0, hackable, and built on standard Linux desktop tech: GTK4, libadwaita, PipeWire, evdev.' },
+  { icon: WifiOff, title: 'Offline', body: 'Everything happens on your computer. Quoth downloads a model once and never needs the network again. Works on a train, on a plane, in a basement.' },
+  { icon: Lock, title: 'Private', body: 'Your voice and your words never leave the device. Nothing is logged, nothing is uploaded, and there is no account to make.' },
+  { icon: Zap, title: 'Instant', body: 'Quoth uses your NPU or GPU when you have one and keeps the model warm, so the text lands the moment you stop talking.' },
+  { icon: Code2, title: 'Open', body: 'Free software under the GPL, built on the standard Linux desktop stack. Read it, fork it, make it yours.' },
 ];
 const small = [
-  { icon: ToggleLeft, title: 'Two modes', body: 'Tap-to-toggle or push-to-hold.' },
-  { icon: Clipboard, title: 'Types into any app', body: 'Clipboard paste with a virtual-keyboard fallback.' },
-  { icon: Languages, title: 'Translate to English', body: 'Speak many languages, get English text.' },
-  { icon: Palette, title: 'Riceable', body: 'Theme the pill via one hot-reloaded theme.toml. Nord, Catppuccin and Dracula ship in the box.' },
+  { icon: ToggleLeft, title: 'Two modes', body: 'Tap to start and stop, or hold to talk.' },
+  { icon: Clipboard, title: 'Types into any app', body: 'Editors, browsers, chat, terminals. Wherever your cursor is.' },
+  { icon: Languages, title: 'Translate to English', body: 'Speak your language, get English text.' },
+  { icon: Palette, title: 'Riceable', body: 'Theme the overlay with one file. Nord, Catppuccin and Dracula come built in.' },
 ];
 ---
 <section id="why" aria-labelledby="why-heading" class="mx-auto max-w-7xl px-6 py-section sm:px-8">

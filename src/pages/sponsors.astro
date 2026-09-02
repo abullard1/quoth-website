@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { Github, Coffee } from 'lucide-astro';
+const gets = [
+  { title: 'Your logo on quoth.dev', body: 'On the front page, above the fold, for as long as you sponsor.' },
+  { title: 'A place in the README', body: 'Every visitor to the repository sees who keeps the project going.' },
+  { title: 'A say in the roadmap', body: 'Not a veto, but a direct line. Tell us what would make Quoth useful to your people.' },
+];
+---
+<Base title="Sponsor Quoth" description="Quoth is free, offline voice dictation for Linux, built by one person. Sponsors keep it independent and get their logo on the front page.">
+  <Nav />
+  <main class="mx-auto max-w-7xl px-6 pb-section pt-40 sm:px-8">
+    <div class="max-w-2xl" data-reveal-group>
+      <p class="eyebrow mb-4 reveal">Sponsors</p>
+      <h1 class="text-display font-light leading-[1.02] tracking-[-0.025em] reveal">
+        Keep Linux dictation <em class="font-medium not-italic">local</em>.
+      </h1>
+      <p class="mt-6 text-lg leading-relaxed text-bone-dim reveal">
+        Quoth is free software with no account, no cloud and no telemetry, which also means no revenue. It is built and maintained by one person. Sponsorship pays for the hardware to test on, the time to support every desktop, and the models to keep it accurate.
+      </p>
+    </div>
+
+    <dl class="mt-16 grid gap-10 sm:grid-cols-3" data-reveal-group>
+      {gets.map((g) => (
+        <div class="reveal border-t hairline pt-5">
+          <dt class="font-medium">{g.title}</dt>
+          <dd class="mt-2 text-sm leading-relaxed text-bone-dim">{g.body}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <div class="mt-20 max-w-2xl" data-reveal-group>
+      <h2 class="text-2xl font-medium tracking-tight reveal">Interested?</h2>
+      <p class="mt-3 text-bone-dim reveal">
+        Open an issue on GitHub titled "Sponsorship" or reach out through Buy Me a Coffee. Individuals are welcome too, every bit helps.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3 reveal">
+        <a class="btn btn-primary" href="https://github.com/abullard1/quoth/issues/new?title=Sponsorship" rel="noopener"><Github size={16} stroke-width={1.75} /> Open an issue</a>
+        <a class="btn btn-ghost" href="https://buymeacoffee.com/samuelbullard" rel="noopener"><Coffee size={16} stroke-width={1.75} /> Buy me a coffee</a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>

@@ -1,0 +1,27 @@
+---
+const facts = [
+  { title: 'Your desktop', body: 'COSMIC, GNOME, KDE Plasma and Sway, with a small overlay that stays out of the way.' },
+  { title: 'Your hardware', body: 'Runs on any modern laptop. Faster still on an Intel NPU or a dedicated GPU.' },
+  { title: 'Your apps', body: 'Whatever has focus gets the text. No plugins, no per-app setup.' },
+];
+---
+<section id="works" aria-labelledby="works-heading" class="border-y hairline bg-ink-900/60">
+  <div class="mx-auto max-w-7xl px-6 py-section sm:px-8">
+    <div class="grid gap-12 lg:grid-cols-[1fr_2fr]" data-reveal-group>
+      <div>
+        <p class="eyebrow mb-4 reveal">Fits in</p>
+        <h2 id="works-heading" class="text-display font-light leading-[1.02] tracking-[-0.025em] reveal">
+          Made for the Linux desktop you already have.
+        </h2>
+      </div>
+      <dl class="grid gap-10 sm:grid-cols-3">
+        {facts.map((f) => (
+          <div class="reveal border-t hairline pt-5">
+            <dt class="font-medium">{f.title}</dt>
+            <dd class="mt-2 text-sm leading-relaxed text-bone-dim">{f.body}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </div>
+</section>
