@@ -3,7 +3,7 @@ import type { APIRoute } from 'astro';
 export const prerender = false;
 
 /**
- * Support form relay. Sends the message through Mailgun so the maintainer's
+ * Contact form relay. Sends the message through Mailgun so the maintainer's
  * address never appears in the page. Configuration comes from the host's
  * environment, never from the repo.
  */
@@ -11,6 +11,8 @@ const env = (key: string): string | undefined =>
   (typeof process !== 'undefined' ? process.env[key] : undefined) ?? (import.meta.env as Record<string, string | undefined>)[key];
 
 const LIMITS = { name: 100, email: 200, message: 5000 } as const;
+const TOPICS = { support: 'Support', bug: 'Bug report', sponsorship: 'Sponsorship', other: 'Something else' } as const;
+type Topic = keyof typeof TOPICS;
 const MIN_MESSAGE = 10;
 const MIN_FILL_MS = 3000;
 const RATE_WINDOW_MS = 60 * 60 * 1000;
@@ -28,13 +30,15 @@ const isRateLimited = (ip: string): boolean => {
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-type Parsed = { ok: true; name: string; email: string; message: string } | { ok: false; error: string };
+type Parsed = { ok: true; name: string; email: string; message: string; topic: Topic } | { ok: false; error: string };
 
 function parse(form: FormData): Parsed {
   const str = (k: string) => String(form.get(k) ?? '').trim();
   const name = str('name');
   const email = str('email');
   const message = str('message');
+  const topicRaw = str('topic');
+  const topic: Topic = topicRaw in TOPICS ? (topicRaw as Topic) : 'other';
   // Honeypot: real people never see this field.
   if (str('website')) return { ok: false, error: 'Rejected.' };
   const started = Number(str('started'));
@@ -43,21 +47,21 @@ function parse(form: FormData): Parsed {
   if (message.length < MIN_MESSAGE) return { ok: false, error: 'Please write a little more.' };
   if (message.length > LIMITS.message) return { ok: false, error: `Please keep it under ${LIMITS.message} characters.` };
   if (name.length > LIMITS.name) return { ok: false, error: 'That name is too long.' };
-  return { ok: true, name, email, message };
+  return { ok: true, name, email, message, topic };
 }
 
-async function sendViaMailgun(p: { name: string; email: string; message: string }): Promise<void> {
+async function sendViaMailgun(p: { name: string; email: string; message: string; topic: Topic }): Promise<void> {
   const key = env('MAILGUN_API_KEY');
   const domain = env('MAILGUN_DOMAIN');
   const to = env('SUPPORT_TO');
   if (!key || !domain || !to) throw new Error('Mailgun is not configured');
   const host = env('MAILGUN_REGION') === 'eu' ? 'api.eu.mailgun.net' : 'api.mailgun.net';
   const body = new URLSearchParams({
-    from: `Quoth support <support@${domain}>`,
+    from: `quoth.dev contact <contact@${domain}>`,
     to,
     'h:Reply-To': p.name ? `${p.name.replace(/[<>"]/g, '')} <${p.email}>` : p.email,
-    subject: `[quoth.dev] Support request from ${p.name || p.email}`,
-    text: `From: ${p.name || '(no name)'} <${p.email}>\n\n${p.message}`,
+    subject: `[quoth.dev] ${TOPICS[p.topic]} from ${p.name || p.email}`,
+    text: `Topic: ${TOPICS[p.topic]}\nFrom: ${p.name || '(no name)'} <${p.email}>\n\n${p.message}`,
   });
   const res = await fetch(`https://${host}/v3/${domain}/messages`, {
     method: 'POST',
@@ -70,7 +74,7 @@ async function sendViaMailgun(p: { name: string; email: string; message: string 
 const respond = (request: Request, status: number, payload: { ok: boolean; error?: string }) => {
   const wantsJson = request.headers.get('accept')?.includes('application/json');
   if (wantsJson) return new Response(JSON.stringify(payload), { status, headers: { 'Content-Type': 'application/json' } });
-  const url = new URL('/support', request.url);
+  const url = new URL('/contact', request.url);
   url.searchParams.set(payload.ok ? 'sent' : 'error', payload.ok ? '1' : payload.error ?? 'Something went wrong.');
   return Response.redirect(url.toString(), 303);
 };
@@ -94,7 +98,7 @@ export const POST: APIRoute = async ({ request, clientAddress, site }) => {
   try {
     await sendViaMailgun(parsed);
   } catch (err) {
-    console.error('[support] send failed:', err instanceof Error ? err.message : err);
+    console.error('[contact] send failed:', err instanceof Error ? err.message : err);
     return respond(request, 502, { ok: false, error: 'Could not send right now. Please try again later.' });
   }
   return respond(request, 200, { ok: true });

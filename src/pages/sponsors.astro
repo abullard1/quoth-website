@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { Github, Coffee } from 'lucide-astro';
+import { Coffee } from 'lucide-astro';
 const gets = [
   { title: 'Your logo on quoth.dev', body: 'On the front page, above the fold, for as long as you sponsor.' },
   { title: 'A place in the README', body: 'Every visitor to the repository sees who keeps the project going.' },
@@ -34,10 +34,10 @@ const gets = [
     <div class="mt-20 max-w-2xl" data-reveal-group>
       <h2 class="text-2xl font-medium tracking-tight reveal">Interested?</h2>
       <p class="mt-3 text-bone-dim reveal">
-        Open an issue on GitHub titled "Sponsorship" or reach out through Buy Me a Coffee. Individuals are welcome too, every bit helps.
+        Send a message through the contact form and pick "Sponsorship", or support the project directly through Buy Me a Coffee. Individuals are welcome too, every bit helps.
       </p>
       <div class="mt-8 flex flex-wrap gap-3 reveal">
-        <a class="btn btn-primary" href="https://github.com/abullard1/quoth/issues/new?title=Sponsorship" rel="noopener"><Github size={16} stroke-width={1.75} /> Open an issue</a>
+        <a class="btn btn-primary" href="/contact?topic=sponsorship">Get in touch</a>
         <a class="btn btn-ghost" href="https://buymeacoffee.com/samuelbullard" rel="noopener"><Coffee size={16} stroke-width={1.75} /> Buy me a coffee</a>
       </div>
     </div>
